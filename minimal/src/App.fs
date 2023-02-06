@@ -10,6 +10,7 @@ open Elmish.React
 open Elmish.Debug
 open Fable.React
 open Fable.React.Props
+open Fable.React.HookBindings
 
 // MODEL
 
@@ -30,17 +31,21 @@ let update (msg: Msg) (model: Model) =
 
 // VIEW (rendered with React)
 
-let view (model: Model) dispatch =
-
-    div [] [
-        button [ OnClick(fun _ -> dispatch Increment) ] [
-            str "+"
+let viewFunction =
+    FunctionComponent.Of(fun ((model: Model), dispatch) -> 
+        Hooks.useEffect(fun () -> ())
+        
+        div [] [
+            button [ OnClick(fun _ -> dispatch Increment) ] [
+                str "+"
+            ]
+            div [] [ str (string model) ]
+            button [ OnClick(fun _ -> dispatch Decrement) ] [
+                str "-"
+            ]
         ]
-        div [] [ str (string model) ]
-        button [ OnClick(fun _ -> dispatch Decrement) ] [
-            str "-"
-        ]
-    ]
+    )
+let view (model: Model) dispatch = viewFunction (model, dispatch)
 
 // App
 Program.mkSimple init update view
