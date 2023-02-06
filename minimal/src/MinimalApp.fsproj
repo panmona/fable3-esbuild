@@ -3,7 +3,7 @@
     <PropertyGroup>
         <RootNamespace>MinimalApp</RootNamespace>
         <WarnOn>3390;$(WarnOn)</WarnOn>
-        <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
         <AssemblyName>MinimalApp</AssemblyName>
     </PropertyGroup>
 
