@@ -31,21 +31,21 @@ let update (msg: Msg) (model: Model) =
 
 // VIEW (rendered with React)
 
-[<ReactComponent>]
-let InternalView (model: Model, dispatch) =
-    React.useWindowListener.onBeforeUnload (fun e -> e.returnValue <- true)
-
-    Html.div [
-        Html.button [
-            //prop.onClick (fun _ -> dispatch Increment)
-            prop.text "+"
+let InternalView = React.functionComponent (fun (model, dispatch) ->
+        React.useWindowListener.onBeforeUnload (fun e -> e.returnValue <- true)
+        
+        Html.div [
+            Html.button [
+                prop.onClick (fun _ -> dispatch Increment)
+                prop.text "+"
+            ]
+            Html.span [ prop.text (string model) ]
+            Html.button [
+                prop.onClick (fun _ -> dispatch Decrement)
+                prop.text "-"
+            ]
         ]
-        Html.span [ prop.text (string model) ]
-        Html.button [
-            //prop.onClick (fun _ -> dispatch Decrement)
-            prop.text "-"
-        ]
-    ]
+    )
 
 let view (model: Model) dispatch : ReactElement =
     InternalView (model, dispatch)
