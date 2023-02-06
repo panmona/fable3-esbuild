@@ -37,12 +37,12 @@ let InternalView (model: Model, dispatch) =
 
     Html.div [
         Html.button [
-            prop.onClick (fun _ -> dispatch Increment)
+            //prop.onClick (fun _ -> dispatch Increment)
             prop.text "+"
         ]
         Html.span [ prop.text (string model) ]
         Html.button [
-            prop.onClick (fun _ -> dispatch Decrement)
+            //prop.onClick (fun _ -> dispatch Decrement)
             prop.text "-"
         ]
     ]

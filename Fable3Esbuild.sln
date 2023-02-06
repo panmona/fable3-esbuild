@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder1", "Solution
 	ProjectSection(SolutionItems) = preProject
 		minimal\package.json = minimal\package.json
 		minimal\build.mjs = minimal\build.mjs
+		minimal\yarn.lock = minimal\yarn.lock
+		minimal\out\app.js = minimal\out\app.js
 	EndProjectSection
 EndProject
 Global
