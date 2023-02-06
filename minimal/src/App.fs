@@ -17,8 +17,12 @@ open MinimalApp
 
 // VIEW (rendered with React)
 
+let init _ = Model.init ()
+let update msg model = Model.update msg model
+let view model dispatch = View.view model dispatch
+
 // App
-Program.mkSimple Model.init Model.update View.view
+Program.mkSimple init update view
 |> Program.withReactSynchronous "elmish-app"
 |> Program.withConsoleTrace
 |> Program.withDebugger

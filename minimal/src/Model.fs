@@ -1,5 +1,7 @@
 namespace MinimalApp
 
+open Elmish
+
 type Model = int
 type Msg =
     | Increment
@@ -13,4 +15,4 @@ module Model =
     let update (msg: Msg) (model: Model) =
         match msg with
         | Increment -> model + 1
-        | Decrement -> model - 1    
+        | Decrement -> model - 1
