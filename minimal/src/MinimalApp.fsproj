@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="PromiseRejectionEvent.fs" />
+        <Compile Include="Listener.fs" />
         <Compile Include="App.fs" />
     </ItemGroup>
 
@@ -15,5 +17,6 @@
         <PackageReference Include="Fable.Core" Version="3.4.0" />
         <PackageReference Include="Fable.Elmish.Debugger" Version="3.3.0" />
         <PackageReference Include="Fable.Elmish.React" Version="3.0.1" />
+        <PackageReference Include="Feliz" Version="2.4.0" />
     </ItemGroup>
 </Project>

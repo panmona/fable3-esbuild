@@ -8,8 +8,9 @@ module App
 open Elmish
 open Elmish.React
 open Elmish.Debug
-open Fable.React
-open Fable.React.Props
+open Feliz
+
+open Feliz.UseListener
 
 // MODEL
 
@@ -30,21 +31,29 @@ let update (msg: Msg) (model: Model) =
 
 // VIEW (rendered with React)
 
-let view (model: Model) dispatch =
+// TODO try to do the same thing on old react version and see if it breaks
+[<ReactComponent>]
+let InternalView (model: Model, dispatch) =
+    React.useWindowListener.onBeforeUnload (fun e -> e.returnValue <- true)
 
-    div [] [
-        button [ OnClick(fun _ -> dispatch Increment) ] [
-            str "+"
+    Html.div [
+        Html.button [
+            prop.onClick (fun _ -> dispatch Increment)
+            prop.text "+"
         ]
-        div [] [ str (string model) ]
-        button [ OnClick(fun _ -> dispatch Decrement) ] [
-            str "-"
+        Html.span [ prop.text (string model) ]
+        Html.button [
+            prop.onClick (fun _ -> dispatch Decrement)
+            prop.text "-"
         ]
     ]
 
+let view (model: Model) dispatch : ReactElement =
+    InternalView (model, dispatch)
+
 // App
 Program.mkSimple init update view
-|> Program.withReactSynchronous "elmish-app"
+|> Program.withReactBatched "elmish-app"
 |> Program.withConsoleTrace
 |> Program.withDebugger
 |> Program.run
