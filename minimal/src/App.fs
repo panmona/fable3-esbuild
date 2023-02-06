@@ -32,18 +32,18 @@ let update (msg: Msg) (model: Model) =
 // VIEW (rendered with React)
 
 [<ReactComponent>]
-let InternalView (model: Model, dispatch) =
+let InternalView (model: Model, _) =
     let xFun = fun () -> ()
     React.useEffect(xFun, [||])
     
     Html.div [
         Html.button [
-            prop.onClick (fun _ -> dispatch Increment)
+            //prop.onClick (fun _ -> dispatch Increment)
             prop.text "+"
         ]
         Html.span [ prop.text (string model) ]
         Html.button [
-            prop.onClick (fun _ -> dispatch Decrement)
+            //prop.onClick (fun _ -> dispatch Decrement)
             prop.text "-"
         ]
     ]
@@ -52,8 +52,11 @@ let view (model: Model) dispatch : ReactElement =
     InternalView (model, dispatch)
 
 // App
-Program.mkProgram init update view
-|> Program.withReactBatched "elmish-app"
-|> Program.withConsoleTrace
-// |> Program.withDebugger
-|> Program.run
+// Program.mkProgram init update view
+// |> Program.withReactBatched "elmish-app"
+// |> Program.withConsoleTrace
+// // |> Program.withDebugger
+// |> Program.run
+
+let x = ReactDOM.createRoot(Browser.Dom.document.getElementById "elmish-app")
+x.render(view 0 ())
