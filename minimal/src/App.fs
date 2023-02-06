@@ -11,6 +11,7 @@ open Elmish.React
 open Feliz
 
 // open Feliz.UseListener
+open Feliz.UseMediaQuery
 
 // MODEL
 
@@ -33,8 +34,12 @@ let update (msg: Msg) (model: Model) =
 
 [<ReactComponent>]
 let InternalView (model: Model, _) =
-    let xFun = fun () -> ()
-    React.useEffect(xFun, [||])
+    // let xFun = fun () -> ()
+    // React.useEffect(xFun, [||])
+    
+    // Obviously also not working as this also needs a hook
+    //let isMobile = React.useMediaQuery "(max-width: 768px)"
+    // printfn "isMobile: %A" isMobile
     
     Html.div [
         Html.button [
