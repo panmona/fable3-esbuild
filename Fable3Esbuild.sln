@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder1", "SolutionFolder1", "{7D94BC8A-30C5-4CF1-80E1-A40AB60E1A06}"
 	ProjectSection(SolutionItems) = preProject
 		minimal\package.json = minimal\package.json
+		minimal\build.mjs = minimal\build.mjs
 	EndProjectSection
 EndProject
 Global
