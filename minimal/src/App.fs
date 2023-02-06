@@ -7,10 +7,10 @@ module App
 
 open Elmish
 open Elmish.React
-open Elmish.Debug
+// open Elmish.Debug
 open Feliz
 
-open Feliz.UseListener
+// open Feliz.UseListener
 
 // MODEL
 
@@ -20,21 +20,22 @@ type Msg =
     | Increment
     | Decrement
 
-let init () : Model = 0
+let init () = 0, Cmd.none
 
 // UPDATE
 
 let update (msg: Msg) (model: Model) =
     match msg with
-    | Increment -> model + 1
-    | Decrement -> model - 1
+    | Increment -> model + 1, Cmd.none
+    | Decrement -> model - 1, Cmd.none
 
 // VIEW (rendered with React)
 
 [<ReactComponent>]
 let InternalView (model: Model, dispatch) =
-    React.useWindowListener.onBeforeUnload (fun e -> e.returnValue <- true)
-
+    let xFun = fun () -> ()
+    React.useEffect(xFun, [||])
+    
     Html.div [
         Html.button [
             prop.onClick (fun _ -> dispatch Increment)
@@ -51,8 +52,8 @@ let view (model: Model) dispatch : ReactElement =
     InternalView (model, dispatch)
 
 // App
-Program.mkSimple init update view
+Program.mkProgram init update view
 |> Program.withReactBatched "elmish-app"
 |> Program.withConsoleTrace
-|> Program.withDebugger
+// |> Program.withDebugger
 |> Program.run
