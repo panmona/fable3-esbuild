@@ -6,7 +6,8 @@ open Feliz.UseListener
 // TODO try to do the same thing on old react version and see if it breaks
 [<ReactComponent>]
 let InternalView (model: Model, dispatch) =
-    React.useWindowListener.onBeforeUnload (fun e -> e.returnValue <- true)
+//    React.useWindowListener.onBeforeUnload (fun e -> e.returnValue <- true)
+    React.useEffect (fun () -> ())
 
     Html.div [
         Html.button [
