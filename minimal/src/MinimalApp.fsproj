@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="PromiseRejectionEvent.fs" />
+        <Compile Include="Listener.fs" />
         <Compile Include="App.fs" />
     </ItemGroup>
 

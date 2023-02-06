@@ -10,6 +10,8 @@ open Elmish.React
 open Elmish.Debug
 open Feliz
 
+open Feliz.UseListener
+
 // MODEL
 
 type Model = int
@@ -29,7 +31,9 @@ let update (msg: Msg) (model: Model) =
 
 // VIEW (rendered with React)
 
-let view (model: Model) dispatch =
+[<ReactComponent>]
+let InternalView (model: Model, dispatch) =
+    React.useWindowListener.onBeforeUnload (fun e -> e.returnValue <- true)
 
     Html.div [
         Html.button [
@@ -43,9 +47,12 @@ let view (model: Model) dispatch =
         ]
     ]
 
+let view (model: Model) dispatch : ReactElement =
+    InternalView (model, dispatch)
+
 // App
 Program.mkSimple init update view
-|> Program.withReactSynchronous "elmish-app"
+|> Program.withReactBatched "elmish-app"
 |> Program.withConsoleTrace
 |> Program.withDebugger
 |> Program.run
