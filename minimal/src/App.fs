@@ -8,8 +8,7 @@ module App
 open Elmish
 open Elmish.React
 open Elmish.Debug
-open Fable.React
-open Fable.React.Props
+open Feliz
 
 // MODEL
 
@@ -32,13 +31,15 @@ let update (msg: Msg) (model: Model) =
 
 let view (model: Model) dispatch =
 
-    div [] [
-        button [ OnClick(fun _ -> dispatch Increment) ] [
-            str "+"
+    Html.div [
+        Html.button [
+            prop.onClick (fun _ -> dispatch Increment)
+            prop.text "+"
         ]
-        div [] [ str (string model) ]
-        button [ OnClick(fun _ -> dispatch Decrement) ] [
-            str "-"
+        Html.span [ prop.text (string model) ]
+        Html.button [
+            prop.onClick (fun _ -> dispatch Decrement)
+            prop.text "-"
         ]
     ]
 
