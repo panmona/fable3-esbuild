@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Types.fs" />
         <Compile Include="App.fs" />
     </ItemGroup>
 
@@ -15,7 +16,6 @@
         <PackageReference Include="Fable.Core" Version="4.0.0-theta-007" />
         <PackageReference Include="Fable.Elmish.Debugger" Version="4.0.0" />
         <PackageReference Include="Fable.Elmish.React" Version="4.0.0" />
-        <PackageReference Include="Feliz" Version="2.4.0" />
-        <PackageReference Include="Feliz.MaterialUI" Version="1.2.6" />
+        <PackageReference Include="Feliz" Version="2.4.1" />
     </ItemGroup>
 </Project>
